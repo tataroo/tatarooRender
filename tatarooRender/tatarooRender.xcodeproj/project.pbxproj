@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		89043D9924F6BFE500DCC44C /* mvp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89043D9724F6BFE500DCC44C /* mvp.cpp */; };
+		893B28392509F08600EF3101 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 893B28372509F08600EF3101 /* shader.cpp */; };
+		893B283B250A14AB00EF3101 /* geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 893B283A250A14AB00EF3101 /* geometry.cpp */; };
+		893B283E250A172E00EF3101 /* program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 893B283C250A172E00EF3101 /* program.cpp */; };
 		8951106324DF101D0035DEFD /* line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8951106124DF101D0035DEFD /* line.cpp */; };
 		8951DE8B24E9200300BA8A23 /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8951DE8824E9200300BA8A23 /* model.cpp */; };
 		8951DE9124EBBFE800BA8A23 /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8951DE8F24EBBFE800BA8A23 /* triangle.cpp */; };
@@ -30,6 +33,11 @@
 /* Begin PBXFileReference section */
 		89043D9724F6BFE500DCC44C /* mvp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mvp.cpp; sourceTree = "<group>"; };
 		89043D9824F6BFE500DCC44C /* mvp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mvp.hpp; sourceTree = "<group>"; };
+		893B28372509F08600EF3101 /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		893B28382509F08600EF3101 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
+		893B283A250A14AB00EF3101 /* geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometry.cpp; sourceTree = "<group>"; };
+		893B283C250A172E00EF3101 /* program.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = program.cpp; sourceTree = "<group>"; };
+		893B283D250A172E00EF3101 /* program.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = program.hpp; sourceTree = "<group>"; };
 		8951106124DF101D0035DEFD /* line.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = line.cpp; sourceTree = "<group>"; };
 		8951106224DF101D0035DEFD /* line.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = line.hpp; sourceTree = "<group>"; };
 		8951DE8624E9200300BA8A23 /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
@@ -88,6 +96,7 @@
 		896DEF2A24DD8EB200CA57CC /* tatarooRender */ = {
 			isa = PBXGroup;
 			children = (
+				893B283A250A14AB00EF3101 /* geometry.cpp */,
 				8951DE8624E9200300BA8A23 /* geometry.h */,
 				8951DE8824E9200300BA8A23 /* model.cpp */,
 				8951DE8724E9200300BA8A23 /* model.h */,
@@ -101,6 +110,10 @@
 				8951DE9024EBBFE800BA8A23 /* triangle.hpp */,
 				89043D9724F6BFE500DCC44C /* mvp.cpp */,
 				89043D9824F6BFE500DCC44C /* mvp.hpp */,
+				893B28372509F08600EF3101 /* shader.cpp */,
+				893B28382509F08600EF3101 /* shader.hpp */,
+				893B283C250A172E00EF3101 /* program.cpp */,
+				893B283D250A172E00EF3101 /* program.hpp */,
 			);
 			path = tatarooRender;
 			sourceTree = "<group>";
@@ -162,6 +175,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				893B28392509F08600EF3101 /* shader.cpp in Sources */,
+				893B283E250A172E00EF3101 /* program.cpp in Sources */,
+				893B283B250A14AB00EF3101 /* geometry.cpp in Sources */,
 				896DEF3524DD8F0E00CA57CC /* tgaimage.cpp in Sources */,
 				896DEF2C24DD8EB200CA57CC /* main.cpp in Sources */,
 				8951106324DF101D0035DEFD /* line.cpp in Sources */,

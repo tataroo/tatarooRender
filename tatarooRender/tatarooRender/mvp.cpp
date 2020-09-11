@@ -52,21 +52,6 @@ Matrix modelRotate(Vec3f center, float angleX, float angleY, float angleZ)
 //    rst.log();
     return model;
 }
-mat<4, 1, float> v2m(Vec3f v)
-{
-    mat<4, 1, float> temp;
-    temp[0][0] = v.x;
-    temp[1][0] = v.y;
-    temp[2][0] = v.z;
-    temp[3][0] = 1;
-    return temp;
-}
-
-Vec3f m2v(mat<4, 1, float> v){
-    Vec3f k(v[0][0] / v[3][0], v[1][0] / v[3][0], v[2][0] / v[3][0]);
-    return k;
-}
-
 
 void divs(mat<4, 1, float>& v, float z){
     v[0] = v[0] / z;

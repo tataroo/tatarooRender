@@ -231,5 +231,10 @@ typedef vec<3,  float> Vec3f;
 typedef vec<3,  int>   Vec3i;
 typedef vec<4,  float> Vec4f;
 typedef mat<4,4,float> Matrix;
+
+mat<4, 1, float> v2m(Vec3f v);
+
+Vec3f m2v(mat<4, 1, float> v);
+Vec3f m2v(Vec4f v);
 #endif //__GEOMETRY_H__
 

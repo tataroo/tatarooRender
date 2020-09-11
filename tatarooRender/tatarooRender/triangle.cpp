@@ -125,7 +125,6 @@ void drawTriangle(Vec3f a, Vec3f b, Vec3f c, float* zBuffer, TGAImage& image, fl
             if (p.z > zBuffer[index]){
                 Vec2f textureUv = uv0 * ratio[0] + uv1 * ratio[1] + uv2 * ratio[2];
                 TGAColor color = model->diffuse(textureUv) * intensity;
-//                color = TGAColor(rand() % 255, rand() % 255, rand() % 255, 255);
                 image.set(i, j, color);
                 zBuffer[index] = p.z;
             }
@@ -133,3 +132,50 @@ void drawTriangle(Vec3f a, Vec3f b, Vec3f c, float* zBuffer, TGAImage& image, fl
     }
 }
 
+void drawTriangle(Vec3f* screenCoord, TGAImage& image, float intensity, program* oProgram){
+    Vec3f a = screenCoord[0];
+    Vec3f b = screenCoord[1];
+    Vec3f c = screenCoord[2];
+    int width = image.get_width();
+    int height = image.get_height();
+    float minX = max(0.f, min(c.x, min(a.x, b.x)));
+    float maxX = min((float)width - 1, max(c.x, max(a.x, b.x)));
+    float minY = max(0.f, min(c.y, min(a.y, b.y)));
+    float maxY = min((float)height - 1,max(c.y, max(a.y, b.y)));
+    void* varying = nullptr;
+    varying = malloc(oProgram->getShader()->getSizeOfVarrings());
+    memset(varying, 0, oProgram->getShader()->getSizeOfVarrings());
+    for (int i = minX; i <= maxX; ++i) {
+        for (int j = minY; j <= maxY; ++j) {
+            // 通过插值计算z
+            Vec3f p(i, j, 0);
+            Vec3f ratio = barycentric(a, b, c, p);
+            if (ratio.x < 0 || ratio.y < 0 || ratio.z < 0) {
+                continue;
+            }
+            p.z += a.z * ratio[0] + b.z * ratio[1] + c.z * ratio[2];
+            if (!oProgram->discard(i, j, p.z)){
+                interpolate_varyings(oProgram->varyings, varying, oProgram->getShader()->getSizeOfVarrings(), ratio);
+                TGAColor color = oProgram->getShader()->fragment(varying, oProgram->uniforms) * intensity;
+                image.set(i, j, color);
+            }
+        }
+    }
+    free(varying);
+}
+void interpolate_varyings(void *src_varyings[3], void *dst_varyings, int sizeof_varyings, Vec3f weights){
+    int num_floats = sizeof_varyings / sizeof(float);
+    float *src0 = (float*)src_varyings[0];
+    float *src1 = (float*)src_varyings[1];
+    float *src2 = (float*)src_varyings[2];
+    float *dst = (float*)dst_varyings;
+    float weight0 = weights.x;
+    float weight1 = weights.y;
+    float weight2 = weights.z;
+    float normalizer = 1 / (weight0 + weight1 + weight2);
+    int i;
+    for (i = 0; i < num_floats; i++) {
+        float sum = src0[i] * weight0 + src1[i] * weight1 + src2[i] * weight2;
+        dst[i] = sum * normalizer;
+    }
+}

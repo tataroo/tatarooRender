@@ -11,10 +11,6 @@
 
 #include <stdio.h>
 #include "geometry.h"
-
-mat<4, 1, float> v2m(Vec3f v);
-
-Vec3f m2v(mat<4, 1, float> v);
 Matrix modelScale(float x, float y, float z);
 Matrix modelMove(float x, float y, float z);
 Matrix modelRotate(Vec3f center, float angleX, float angleY, float angleZ);

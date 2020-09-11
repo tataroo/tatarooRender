@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C46C1059-EB43-475F-95A6-22D1458AA646"
+            uuid = "1BBDF868-586F-4440-A359-2458F7052E40"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "tatarooRender/triangle.cpp"
+            filePath = "tatarooRender/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "drawTriangle(a, b, c, zBuffer, image, intensity, uv0, uv1, uv2, model)"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "drawSpModel()"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

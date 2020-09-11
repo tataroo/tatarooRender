@@ -11,9 +11,6 @@ private:
     std::vector<std::vector<Vec3i> > faces_; // attention, this Vec3i means vertex/uv/normal
     std::vector<Vec3f> norms_;
     std::vector<Vec2f> uv_;
-    TGAImage diffusemap_;
-    TGAImage normalmap_;
-    TGAImage specularmap_;
     void load_texture(std::string filename, const char *suffix, TGAImage &img);
 public:
     Model(const char *filename);
@@ -28,6 +25,10 @@ public:
     TGAColor diffuse(const Vec2f &uv) const;
     float specular(const Vec2f &uv) const;
     std::vector<int> face(const int idx) const;
+public:
+    TGAImage diffusemap_;
+    TGAImage normalmap_;
+    TGAImage specularmap_;
 };
 #endif //__MODEL_H__
 

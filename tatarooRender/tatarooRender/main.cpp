@@ -12,6 +12,8 @@
 #include "model.h"
 #include "triangle.hpp"
 #include "mvp.hpp"
+#include "program.hpp"
+#include "shader.hpp"
 using namespace  std;
 const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red   = TGAColor(255, 0,   0,   255);
@@ -107,12 +109,65 @@ void drawTria()
             drawTriangle(triangle[0], triangle[1], triangle[2], zbuffer, image, intensity, uv[0], uv[1], uv[2], blackman);
         }
     }
-//    image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
     image.write_tga_file("/Users/jiangrui/workspace/fsa/trianglenojj.tga");
 }
+
+void drawSpModel()
+{
+    TGAImage image(width, height, TGAImage::RGB);
+    Model* blackman = new Model("/Users/jiangrui/myProject/tatarooRender/tatarooRender/obj/african_head.obj");
+    
+    // 设置program 和 shader的uniform参数
+    spShader* pShader = new spShader();
+    program* oProgram = new program(pShader, width, height);
+    // 设置uniform
+    Vec3f light_dir(0,0,-1); // 光照方向
+    spUniforms* uniforms = new spUniforms();
+    Matrix model = modelScale(1, 1, -1);
+    Matrix view = lookAt(eye, up, center);
+    Matrix projection = Perspective(60, 1, 0.1, 10000);
+    uniforms->model = model;
+    uniforms->view = view;
+    uniforms->projection = projection;
+    uniforms->light_dir = light_dir;
+    uniforms->diffusemap = blackman->diffusemap_;
+    oProgram->uniforms = uniforms;
+    
+    for (int i = 0; i < blackman->nfaces(); ++i) {
+        std::vector<int> face = blackman->face(i);
+        Vec3f triangle[3];
+        Vec3f worldCoord[3];
+        for (int j = 0; j < 3; ++j) {
+            // 设置attribs
+            spAttribs* attribs = new spAttribs();
+            oProgram->varyings[j] = new spVarrings();
+            Vec3f coords = blackman->vert(face[j]);
+            Vec2f uv = blackman->uv(i, j);
+            attribs->position = coords;
+            attribs->texcoord = uv;
+            attribs->normal = blackman->normal(i, j);
+            Vec4f stdPosition = oProgram->getShader()->vertex(attribs, oProgram->varyings[j], oProgram->uniforms);
+            worldCoord[j] = coords;
+            // 透视除法和视口变换
+            triangle[j] = m2v(stdPosition);
+            triangle[j] = Vec3f((triangle[j].x + 1) * width / 2, (triangle[j].y + 1) * height / 2, (triangle[j].z + 1) * 0.5);
+        }
+        //背面剔除
+        Vec3f n = (worldCoord[2] - worldCoord[0]) ^ (worldCoord[1] - worldCoord[0]);// 法线
+        n.normalize();
+        float intensity = n * light_dir;
+        if (intensity > 0){
+            drawTriangle(triangle, image, intensity, oProgram);
+        }
+    }
+    image.write_tga_file("/Users/jiangrui/workspace/fsa/trianglenojjk.tga");
+    delete blackman;
+    delete oProgram;
+}
+
 int main(int argc, char** argv)
 {
-    drawTria();
+    drawSpModel();
     return 0;
 }
 
