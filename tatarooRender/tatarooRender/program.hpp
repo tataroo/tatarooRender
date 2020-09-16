@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "shader.hpp"
+#include "frameBuffer.hpp"
 class program {
 public:
     program(shader* oShader, int width, int height);
@@ -21,10 +22,16 @@ public:
     void* uniforms;
     void* varyings[3];
     void* outVaryings[3];
+    int nWidth;
+    int nHeight;
 private:
     shader* oShader;
     float* zBuffer;
-    int nWidth;
-    int nHeight;
+    
 };
+
+typedef struct{
+    framebuffer_t* frameBuffer;
+} context;
+typedef void tickFunc(context* pContext, void* userData);
 #endif /* program_hpp */

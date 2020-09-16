@@ -4,13 +4,15 @@
 #include <string>
 #include "geometry.h"
 #include "tgaimage.h"
-
+#include "map"
+using namespace  std;
 class Model {
 private:
     std::vector<Vec3f> verts_;
     std::vector<std::vector<Vec3i> > faces_; // attention, this Vec3i means vertex/uv/normal
     std::vector<Vec3f> norms_;
     std::vector<Vec2f> uv_;
+    static map<const char*, Model*> modelMap;
     void load_texture(std::string filename, const char *suffix, TGAImage &img);
 public:
     Model(const char *filename);
@@ -25,6 +27,8 @@ public:
     TGAColor diffuse(const Vec2f &uv) const;
     float specular(const Vec2f &uv) const;
     std::vector<int> face(const int idx) const;
+    static void addModel(const char *filename);
+    static map<const char*, Model*> getModels();
 public:
     TGAImage diffusemap_;
     TGAImage normalmap_;

@@ -7,6 +7,7 @@
 //
 
 #include "triangle.hpp"
+#include "core/maths.h"
 using namespace  std;
 Vec3i cross(Vec3i a, Vec3i b)
 {
@@ -132,12 +133,12 @@ void drawTriangle(Vec3f a, Vec3f b, Vec3f c, float* zBuffer, TGAImage& image, fl
     }
 }
 
-void drawTriangle(Vec3f* screenCoord, TGAImage& image, float intensity, program* oProgram){
+void drawTriangle(Vec3f* screenCoord, framebuffer_t* pFrameBuffer, float intensity, program* oProgram, TGAImage& image){
     Vec3f a = screenCoord[0];
     Vec3f b = screenCoord[1];
     Vec3f c = screenCoord[2];
-    int width = image.get_width();
-    int height = image.get_height();
+    int width = oProgram->nWidth;
+    int height = oProgram->nHeight;
     float minX = max(0.f, min(c.x, min(a.x, b.x)));
     float maxX = min((float)width - 1, max(c.x, max(a.x, b.x)));
     float minY = max(0.f, min(c.y, min(a.y, b.y)));
@@ -156,8 +157,12 @@ void drawTriangle(Vec3f* screenCoord, TGAImage& image, float intensity, program*
             p.z += a.z * ratio[0] + b.z * ratio[1] + c.z * ratio[2];
             if (!oProgram->discard(i, j, p.z)){
                 interpolate_varyings(oProgram->varyings, varying, oProgram->getShader()->getSizeOfVarrings(), ratio);
-                TGAColor color = oProgram->getShader()->fragment(varying, oProgram->uniforms) * intensity;
-                image.set(i, j, color);
+                Vec4f color = oProgram->getShader()->fragment(varying, oProgram->uniforms) * intensity;
+                int index = j * width + i;
+                pFrameBuffer->color_buffer[index * 4 + 0] = float_to_uchar(color.z);
+                pFrameBuffer->color_buffer[index * 4 + 1] = float_to_uchar(color.y);
+                pFrameBuffer->color_buffer[index * 4 + 2] = float_to_uchar(color.x);
+                pFrameBuffer->color_buffer[index * 4 + 3] = float_to_uchar(color.w);
             }
         }
     }

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "model.h"
+map<const char*, Model*> Model::modelMap = {};
 Model::Model() : verts_(), faces_(), norms_(), uv_(), diffusemap_(), normalmap_(), specularmap_() {
 }
 Model::Model(const char *filename) : verts_(), faces_(), norms_(), uv_(), diffusemap_(), normalmap_(), specularmap_() {
@@ -104,4 +105,11 @@ Vec3f Model::normal(const int iface, const int nthvert) const {
     int idx = faces_[iface][nthvert][2];
     return norms_[idx];
 }
+void Model::addModel(const char *filename){
+    Model* pModel = new Model(filename);
+    modelMap[filename] = pModel;
+}
 
+map<const char*, Model*> Model::getModels(){
+    return modelMap;
+}

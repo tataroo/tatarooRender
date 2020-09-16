@@ -15,10 +15,10 @@ class shader {
 public:
     shader();
     virtual ~shader();
-    // 顶点着色器 负责计算标准化的坐标，记录fragment需要的变量如光照强度等
+    // 顶点着色器 
     virtual Vec4f vertex(void* attribs,void* varyings,void* uniforms) = 0;
     // 片段着色器 负责计算最终某点的颜色
-    virtual TGAColor fragment(void *varyings, void *uniforms) = 0;
+    virtual Vec4f fragment(void *varyings, void *uniforms) = 0;
     virtual int getSizeOfVarrings() = 0;
 };
 
@@ -50,7 +50,7 @@ public:
     spShader();
     virtual ~spShader();
     virtual Vec4f vertex(void *attribs, void *varyings, void *uniforms);
-    virtual TGAColor fragment(void *varyings, void *uniforms);
+    virtual Vec4f fragment(void *varyings, void *uniforms);
     virtual int getSizeOfVarrings();
 };
 #endif /* shader_hpp */

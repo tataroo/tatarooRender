@@ -16,6 +16,12 @@
 		8951DE9124EBBFE800BA8A23 /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8951DE8F24EBBFE800BA8A23 /* triangle.cpp */; };
 		896DEF2C24DD8EB200CA57CC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 896DEF2B24DD8EB200CA57CC /* main.cpp */; };
 		896DEF3524DD8F0E00CA57CC /* tgaimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 896DEF3324DD8F0E00CA57CC /* tgaimage.cpp */; };
+		897A0DEE2511B9FD001801F2 /* frameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 897A0DEC2511B9FD001801F2 /* frameBuffer.cpp */; };
+		897A0DF02511BC52001801F2 /* macos.m in Sources */ = {isa = PBXBuildFile; fileRef = 897A0DEF2511BC52001801F2 /* macos.m */; };
+		897A0DF92511BF19001801F2 /* private.c in Sources */ = {isa = PBXBuildFile; fileRef = 897A0DF52511BF19001801F2 /* private.c */; };
+		897A0DFA2511BF19001801F2 /* image.c in Sources */ = {isa = PBXBuildFile; fileRef = 897A0DF82511BF19001801F2 /* image.c */; };
+		897A0DFD2511BF5B001801F2 /* maths.c in Sources */ = {isa = PBXBuildFile; fileRef = 897A0DFB2511BF5B001801F2 /* maths.c */; };
+		897A0E002511C737001801F2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897A0DFF2511C737001801F2 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +59,18 @@
 		896DEF2B24DD8EB200CA57CC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		896DEF3324DD8F0E00CA57CC /* tgaimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tgaimage.cpp; sourceTree = "<group>"; };
 		896DEF3424DD8F0E00CA57CC /* tgaimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tgaimage.h; sourceTree = "<group>"; };
+		897A0DEC2511B9FD001801F2 /* frameBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frameBuffer.cpp; sourceTree = "<group>"; };
+		897A0DED2511B9FD001801F2 /* frameBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = frameBuffer.hpp; sourceTree = "<group>"; };
+		897A0DEF2511BC52001801F2 /* macos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = macos.m; sourceTree = "<group>"; };
+		897A0DF32511BCDF001801F2 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		897A0DF42511BF19001801F2 /* private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
+		897A0DF52511BF19001801F2 /* private.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = private.c; sourceTree = "<group>"; };
+		897A0DF62511BF19001801F2 /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		897A0DF72511BF19001801F2 /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image.h; sourceTree = "<group>"; };
+		897A0DF82511BF19001801F2 /* image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image.c; sourceTree = "<group>"; };
+		897A0DFB2511BF5B001801F2 /* maths.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = maths.c; sourceTree = "<group>"; };
+		897A0DFC2511BF5B001801F2 /* maths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maths.h; sourceTree = "<group>"; };
+		897A0DFF2511C737001801F2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897A0E002511C737001801F2 /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +101,7 @@
 			children = (
 				896DEF2A24DD8EB200CA57CC /* tatarooRender */,
 				896DEF2924DD8EB200CA57CC /* Products */,
+				897A0DFE2511C737001801F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +116,8 @@
 		896DEF2A24DD8EB200CA57CC /* tatarooRender */ = {
 			isa = PBXGroup;
 			children = (
+				897A0DF22511BC89001801F2 /* core */,
+				897A0DF12511BC5D001801F2 /* platforms */,
 				893B283A250A14AB00EF3101 /* geometry.cpp */,
 				8951DE8624E9200300BA8A23 /* geometry.h */,
 				8951DE8824E9200300BA8A23 /* model.cpp */,
@@ -114,8 +136,41 @@
 				893B28382509F08600EF3101 /* shader.hpp */,
 				893B283C250A172E00EF3101 /* program.cpp */,
 				893B283D250A172E00EF3101 /* program.hpp */,
+				897A0DEC2511B9FD001801F2 /* frameBuffer.cpp */,
+				897A0DED2511B9FD001801F2 /* frameBuffer.hpp */,
 			);
 			path = tatarooRender;
+			sourceTree = "<group>";
+		};
+		897A0DF12511BC5D001801F2 /* platforms */ = {
+			isa = PBXGroup;
+			children = (
+				897A0DEF2511BC52001801F2 /* macos.m */,
+			);
+			path = platforms;
+			sourceTree = "<group>";
+		};
+		897A0DF22511BC89001801F2 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				897A0DFB2511BF5B001801F2 /* maths.c */,
+				897A0DFC2511BF5B001801F2 /* maths.h */,
+				897A0DF82511BF19001801F2 /* image.c */,
+				897A0DF72511BF19001801F2 /* image.h */,
+				897A0DF62511BF19001801F2 /* macro.h */,
+				897A0DF52511BF19001801F2 /* private.c */,
+				897A0DF42511BF19001801F2 /* private.h */,
+				897A0DF32511BCDF001801F2 /* platform.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		897A0DFE2511C737001801F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				897A0DFF2511C737001801F2 /* AppKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,10 +233,15 @@
 				893B28392509F08600EF3101 /* shader.cpp in Sources */,
 				893B283E250A172E00EF3101 /* program.cpp in Sources */,
 				893B283B250A14AB00EF3101 /* geometry.cpp in Sources */,
+				897A0DFD2511BF5B001801F2 /* maths.c in Sources */,
+				897A0DEE2511B9FD001801F2 /* frameBuffer.cpp in Sources */,
 				896DEF3524DD8F0E00CA57CC /* tgaimage.cpp in Sources */,
+				897A0DF92511BF19001801F2 /* private.c in Sources */,
 				896DEF2C24DD8EB200CA57CC /* main.cpp in Sources */,
 				8951106324DF101D0035DEFD /* line.cpp in Sources */,
+				897A0DF02511BC52001801F2 /* macos.m in Sources */,
 				89043D9924F6BFE500DCC44C /* mvp.cpp in Sources */,
+				897A0DFA2511BF19001801F2 /* image.c in Sources */,
 				8951DE9124EBBFE800BA8A23 /* triangle.cpp in Sources */,
 				8951DE8B24E9200300BA8A23 /* model.cpp in Sources */,
 			);
@@ -199,7 +259,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -257,7 +317,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -303,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -311,6 +372,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

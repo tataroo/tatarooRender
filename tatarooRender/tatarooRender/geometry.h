@@ -1,6 +1,6 @@
 #ifndef __GEOMETRY_H__
 #define __GEOMETRY_H__
-#include <cmath>
+#include <math.h>
 #include <vector>
 #include <cassert>
 #include <iostream>
@@ -35,12 +35,24 @@ template <typename T> struct vec<3,T> {
     template <class U> vec<3,T>(const vec<3,U> &v);
           T& operator[](const size_t i)       { assert(i<3); return i<=0 ? x : (1==i ? y : z); }
     const T& operator[](const size_t i) const { assert(i<3); return i<=0 ? x : (1==i ? y : z); }
-    float norm() { return std::sqrt(x*x+y*y+z*z); }
+    float norm() { return sqrt(x*x+y*y+z*z); }
     vec<3,T> & normalize(T l=1) { *this = (*this)*(l/norm()); return *this; }
 
     T x,y,z;
 };
 
+
+template <typename T> struct vec<4,T> {
+    vec() : x(T()), y(T()), z(T()),w(T()) {}
+    vec(T X, T Y, T Z, T W) : x(X), y(Y), z(Z), w(W) {}
+    template <class U> vec<4,T>(const vec<4,U> &v);
+          T& operator[](const size_t i)       { assert(i<4); return i<=0 ? x : (1==i ? y : (2==i ? z : w)); }
+    const T& operator[](const size_t i) const { assert(i<4); return i<=0 ? x : (1==i ? y : (2==i ? z : w)); }
+    float norm() { return sqrt(x*x+y*y+z*z+w*w); }
+    vec<3,T> & normalize(T l=1) { *this = (*this)*(l/norm()); return *this; }
+
+    T x,y,z,w;
+};
 /////////////////////////////////////////////////////////////////////////////////
 
 template<size_t DIM,typename T> T operator*(const vec<DIM,T>& lhs, const vec<DIM,T>& rhs) {
