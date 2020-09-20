@@ -20,6 +20,6 @@ typedef struct {
 framebuffer_t *framebuffer_create(int width, int height);
 void framebuffer_release(framebuffer_t *framebuffer);
 void framebuffer_clear_color(framebuffer_t *framebuffer, Vec4f color);
-void framebuffer_clear_depth(framebuffer_t *framebuffer, float depth);
+void framebuffer_clear_depth(framebuffer_t *framebuffer);
 #endif /* frameBuffer_hpp */
 

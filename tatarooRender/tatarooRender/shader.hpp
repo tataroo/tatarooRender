@@ -42,6 +42,7 @@ typedef struct {
     Matrix view;
     Matrix projection;
     TGAImage diffusemap;
+    TGAImage specularmap;
 } spUniforms;
 
 // 简单的渲染器 只考虑简单的背面剔除

@@ -17,7 +17,6 @@ public:
     program(shader* oShader, int width, int height);
     ~program();
     shader* getShader();
-    bool discard(int x, int y, float z);
 public:
     void* uniforms;
     void* varyings[3];
@@ -26,7 +25,6 @@ public:
     int nHeight;
 private:
     shader* oShader;
-    float* zBuffer;
     
 };
 

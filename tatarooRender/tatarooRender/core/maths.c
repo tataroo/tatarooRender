@@ -31,7 +31,7 @@ float float_from_uchar(unsigned char value) {
 }
 
 unsigned char float_to_uchar(float value) {
-    return (unsigned char)(value);
+    return (unsigned char)(value > 255 ? 255 : value);
 }
 
 float float_srgb2linear(float value) {

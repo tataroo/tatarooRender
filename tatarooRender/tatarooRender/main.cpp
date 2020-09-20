@@ -56,6 +56,8 @@ void test1(){
 void drawSpModel(context* pContext, void* userData)
 {
     TGAImage image(width, height, TGAImage::RGB);
+    framebuffer_clear_depth(pContext->frameBuffer);
+    framebuffer_clear_color(pContext->frameBuffer, Vec4f(0,0,0,1));
     map<const char*, Model*> oMap = Model::getModels();
     for (auto iter = oMap.begin(); iter != oMap.end(); ++iter) {
         Model* pModel = iter->second;
@@ -72,7 +74,9 @@ void drawSpModel(context* pContext, void* userData)
         uniforms->view = view;
         uniforms->projection = projection;
         uniforms->light_dir = light_dir;
+        uniforms->eye = camera::getInstance()->getPos();
         uniforms->diffusemap = pModel->diffusemap_;
+        uniforms->specularmap = pModel->specularmap_;
         oProgram->uniforms = uniforms;
         for (int i = 0; i < pModel->nfaces(); ++i) {
             std::vector<int> face = pModel->face(i);
@@ -97,6 +101,7 @@ void drawSpModel(context* pContext, void* userData)
             Vec3f n = (worldCoord[2] - worldCoord[0]) ^ (worldCoord[1] - worldCoord[0]);// 法线
             n.normalize();
             float intensity = n * light_dir;
+            intensity = 1;
             if (intensity > 0){
                 drawTriangle(triangle, pContext->frameBuffer, intensity, oProgram, image);
             }
@@ -214,7 +219,8 @@ int main(int argc, char** argv)
 {
 
     Model::addModel("/Users/jiangrui/myProject/tatarooRender/tatarooRender/obj/african_head.obj");
-//    Model::addModel("/Users/jiangrui/myProject/tatarooRender/tatarooRender/obj/body.obj");
+    Model::addModel("/Users/jiangrui/myProject/tatarooRender/tatarooRender/obj/african_head_eye_inner.obj");
+//    Model::addModel("/Users/jiangrui/myProject/tatarooRender/tatarooRender/obj/african_head_eye_outer.obj");
     mainLoop(drawSpModel, nullptr);
     return 0;
 }

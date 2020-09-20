@@ -24,7 +24,7 @@ framebuffer_t *framebuffer_create(int width, int height) {
     framebuffer->depth_buffer = (float*)malloc(depth_buffer_size);
 
     framebuffer_clear_color(framebuffer, default_color);
-    framebuffer_clear_depth(framebuffer, default_depth);
+    framebuffer_clear_depth(framebuffer);
 
     return framebuffer;
 }
@@ -46,11 +46,11 @@ void framebuffer_clear_color(framebuffer_t *framebuffer, Vec4f color) {
     }
 }
 
-void framebuffer_clear_depth(framebuffer_t *framebuffer, float depth) {
+void framebuffer_clear_depth(framebuffer_t *framebuffer) {
     int num_pixels = framebuffer->width * framebuffer->height;
     int i;
     for (i = 0; i < num_pixels; i++) {
-        framebuffer->depth_buffer[i] = depth;
+        framebuffer->depth_buffer[i] = std::numeric_limits<float>::max();
     }
 }
 

@@ -92,6 +92,14 @@ Vec3f barycentric(Vec3f A, Vec3f B, Vec3f C, Vec3f P) {
     return Vec3f(-1,1,1);
 }
 
+bool discard(int index, float z, float* zBuffer){
+    bool isDicard = z > zBuffer[index];
+    if (!isDicard) {
+        zBuffer[index] = z;
+    }
+    return isDicard;
+}
+
 void drawTriangle(Vec3f* screenCoord, framebuffer_t* pFrameBuffer, float intensity, program* oProgram, TGAImage& image){
     Vec3f a = screenCoord[0];
     Vec3f b = screenCoord[1];
@@ -114,7 +122,8 @@ void drawTriangle(Vec3f* screenCoord, framebuffer_t* pFrameBuffer, float intensi
                 continue;
             }
             p.z += a.z * ratio[0] + b.z * ratio[1] + c.z * ratio[2];
-            if (!oProgram->discard(i, j, p.z)){
+            int index = j * width + i;
+            if (!discard(index, p.z, pFrameBuffer->depth_buffer)){
                 interpolate_varyings(oProgram->varyings, varying, oProgram->getShader()->getSizeOfVarrings(), ratio);
                 Vec4f color = oProgram->getShader()->fragment(varying, oProgram->uniforms);
                 int index = j * width + i;
