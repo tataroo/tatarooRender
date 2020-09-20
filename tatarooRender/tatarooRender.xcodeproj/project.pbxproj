@@ -22,6 +22,7 @@
 		897A0DFA2511BF19001801F2 /* image.c in Sources */ = {isa = PBXBuildFile; fileRef = 897A0DF82511BF19001801F2 /* image.c */; };
 		897A0DFD2511BF5B001801F2 /* maths.c in Sources */ = {isa = PBXBuildFile; fileRef = 897A0DFB2511BF5B001801F2 /* maths.c */; };
 		897A0E002511C737001801F2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897A0DFF2511C737001801F2 /* AppKit.framework */; };
+		897A0E032513022B001801F2 /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 897A0E012513022B001801F2 /* camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +72,9 @@
 		897A0DFB2511BF5B001801F2 /* maths.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = maths.c; sourceTree = "<group>"; };
 		897A0DFC2511BF5B001801F2 /* maths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maths.h; sourceTree = "<group>"; };
 		897A0DFF2511C737001801F2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		897A0E012513022B001801F2 /* camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = camera.cpp; sourceTree = "<group>"; };
+		897A0E022513022B001801F2 /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
+		897A0E0425132D4D001801F2 /* appDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = appDef.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,8 @@
 				893B283D250A172E00EF3101 /* program.hpp */,
 				897A0DEC2511B9FD001801F2 /* frameBuffer.cpp */,
 				897A0DED2511B9FD001801F2 /* frameBuffer.hpp */,
+				897A0E012513022B001801F2 /* camera.cpp */,
+				897A0E022513022B001801F2 /* camera.hpp */,
 			);
 			path = tatarooRender;
 			sourceTree = "<group>";
@@ -161,6 +167,7 @@
 				897A0DF52511BF19001801F2 /* private.c */,
 				897A0DF42511BF19001801F2 /* private.h */,
 				897A0DF32511BCDF001801F2 /* platform.h */,
+				897A0E0425132D4D001801F2 /* appDef.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -234,6 +241,7 @@
 				893B283E250A172E00EF3101 /* program.cpp in Sources */,
 				893B283B250A14AB00EF3101 /* geometry.cpp in Sources */,
 				897A0DFD2511BF5B001801F2 /* maths.c in Sources */,
+				897A0E032513022B001801F2 /* camera.cpp in Sources */,
 				897A0DEE2511B9FD001801F2 /* frameBuffer.cpp in Sources */,
 				896DEF3524DD8F0E00CA57CC /* tgaimage.cpp in Sources */,
 				897A0DF92511BF19001801F2 /* private.c in Sources */,

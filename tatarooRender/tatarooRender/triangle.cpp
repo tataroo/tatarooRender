@@ -92,47 +92,6 @@ Vec3f barycentric(Vec3f A, Vec3f B, Vec3f C, Vec3f P) {
     return Vec3f(-1,1,1);
 }
 
-void test()
-{
-    Vec3f a(3, 0,0.46);
-    Vec3f b(0, 0,0.48);
-    Vec3f c(0,3,0.47);
-    Vec3f p(1.5, 1, 0);
-    Vec3f centersd = barycentric(a, b, c, p);
-    int k = 0;
-}
-
-void drawTriangle(Vec3f a, Vec3f b, Vec3f c, float* zBuffer, TGAImage& image, float intensity, Vec2f uv0, Vec2f uv1, Vec2f uv2, Model* model)
-{
-    int width = image.get_width();
-    int height = image.get_height();
-    float minX = max(0.f, min(c.x, min(a.x, b.x)));
-    float maxX = min((float)width - 1, max(c.x, max(a.x, b.x)));
-    float minY = max(0.f, min(c.y, min(a.y, b.y)));
-    float maxY = min((float)height - 1,max(c.y, max(a.y, b.y)));
-    
-    for (int i = minX; i <= maxX; ++i) {
-        for (int j = minY; j <= maxY; ++j) {
-            // 通过插值计算z
-            Vec3f p(i, j, 0);
-            Vec3f ratio = barycentric(a, b, c, p);
-            if (ratio.x < 0 || ratio.y < 0 || ratio.z < 0) {
-                continue;
-            }
-            p.z += a.z * ratio[0] + b.z * ratio[1] + c.z * ratio[2];
-            
-            // p.z > zBuffer[j * width + i]
-            int index = int(j * width + i);
-            if (p.z > zBuffer[index]){
-                Vec2f textureUv = uv0 * ratio[0] + uv1 * ratio[1] + uv2 * ratio[2];
-                TGAColor color = model->diffuse(textureUv) * intensity;
-                image.set(i, j, color);
-                zBuffer[index] = p.z;
-            }
-        }
-    }
-}
-
 void drawTriangle(Vec3f* screenCoord, framebuffer_t* pFrameBuffer, float intensity, program* oProgram, TGAImage& image){
     Vec3f a = screenCoord[0];
     Vec3f b = screenCoord[1];
@@ -157,7 +116,7 @@ void drawTriangle(Vec3f* screenCoord, framebuffer_t* pFrameBuffer, float intensi
             p.z += a.z * ratio[0] + b.z * ratio[1] + c.z * ratio[2];
             if (!oProgram->discard(i, j, p.z)){
                 interpolate_varyings(oProgram->varyings, varying, oProgram->getShader()->getSizeOfVarrings(), ratio);
-                Vec4f color = oProgram->getShader()->fragment(varying, oProgram->uniforms) * intensity;
+                Vec4f color = oProgram->getShader()->fragment(varying, oProgram->uniforms);
                 int index = j * width + i;
                 pFrameBuffer->color_buffer[index * 4 + 0] = float_to_uchar(color.z);
                 pFrameBuffer->color_buffer[index * 4 + 1] = float_to_uchar(color.y);

@@ -90,8 +90,7 @@ Matrix viewport(int x, int y, int w, int h) {
 
 Matrix Perspective(float fov, float aspect, float near, float far) {
     Matrix mat =  Matrix::identity();
-    float radius = PI / 180;
-    float theta = fov * radius;
+    float theta = fov;
     float divisor = tan(theta / 2);
     float factor = 1.0f / divisor;
     float f_n = 1.0f / (far - near);
